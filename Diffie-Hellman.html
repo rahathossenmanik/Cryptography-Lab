@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function exchangekey(){
+        var q = document.getElementById("prime").value;
+        var a = document.getElementById("alpha").value;
+        var xa = document.getElementById("XA").value;
+        var xb = document.getElementById("XB").value;
+        var ya = Math.pow(a,xa)%q;
+        var yb = Math.pow(a,xb)%q;
+        var ka = Math.pow(yb,xa)%q;
+        var kb = Math.pow(ya,xb)%q;
+        document.getElementById("YA").innerHTML = "Public Key of A: " + ya;
+        document.getElementById("YB").innerHTML = "Public Key of B: " + yb;
+        if(ka==kb){
+          document.getElementById("key").innerHTML = "Key Exchanged: " + ka;
+        }
+        else{
+          document.getElementById("key").innerHTML = "Key Exchange Failed";
+          document.getElementById("keya").innerHTML = "Key By A: " + ka;
+          document.getElementById("keyb").innerHTML = "Key By B: " + kb;
+        }
+      }
+    </script>
+  </head>
+	<body>
+		<h2>Diffie-Hellman Key Exchange</h2>
+    Prime Number: <input id="prime" value=""><br>
+		Primitive Root: <input id="alpha" value=""><br>
+    Secret Key of A: <input id="XA" value=""><br>
+    Secret Key of B: <input id="XB" value=""><br>
+		<button type="button" name="button" onclick="exchangekey()">Calculate</button><br>
+    <p id="YA"></p>
+    <p id="YB"></p>
+    <p id="key"></p>
+    <p id="keya"></p>
+    <p id="keyb"></p>
+	</body>
+</html>
